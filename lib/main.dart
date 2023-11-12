@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home:  HomePage(),
       debugShowCheckedModeBanner: false,
       title: "Simple Navigation",
     );
@@ -19,6 +19,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +34,13 @@ class HomePage extends StatelessWidget {
         children: [
 
           ElevatedButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity1()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity1("This is from home to activity 1")));
 
           }, child: Text("Go-to Activity1")),
           Padding(padding: EdgeInsets.all(20)),
 
           ElevatedButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2("This is from home to activity 2")));
 
           }, child: Text("Go-to Activity2"))
 
@@ -49,20 +51,26 @@ class HomePage extends StatelessWidget {
 }
 
 class Activity1 extends StatelessWidget {
+  String massage;
+  Activity1(
+      this.massage,
+      {super.key}
+  );
+
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text("Activity1"),
+        title:Text(massage),
 
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2("This is from activity 1 to activity 2")));
           },child: Text("Go-To Activity2")),
 
           ElevatedButton(onPressed: (){
@@ -76,19 +84,27 @@ class Activity1 extends StatelessWidget {
 }
 
 class Activity2 extends StatelessWidget {
+  String massage;
+   Activity2(
+       this.massage,
+       {super.key}
+       );
+
+
+
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text("Activity2"),
+        title:Text(massage),
       ),
         body: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity1()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity1("This is from activity 2 to activity 1")));
             },child: Text("Go-To Activity1")),
 
             ElevatedButton(onPressed: (){
